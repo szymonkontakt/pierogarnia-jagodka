@@ -1,0 +1,285 @@
+/* --- 1. ZMIENNE I RESET (Podstawy) --- */
+:root {
+    --primary-color: #D32F2F; /* Czerwień logo/apetyczna */
+    --background-color: #FFF8E1; /* Kremowy kolor ciasta */
+    --text-color: #333333; /* Ciemnoszary dla czytelności */
+    --white: #ffffff;
+    --spacing: 20px;
+}
+
+* {
+    box-sizing: border-box; /* Ważne! Marginy i paddingi nie psują rozmiarów */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: 1100px; /* Maksymalna szerokość strony */
+    margin: 0 auto; /* Wyśrodkowanie */
+    padding: 0 var(--spacing);
+}
+
+/* --- 2. NAGŁÓWEK (Czerwony pasek z logo) --- */
+.main-header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 15px 0;
+    position: sticky; /* Przykleja menu do góry ekranu! */
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+}
+
+.main-header nav ul {
+    display: flex;
+    gap: 20px;
+}
+
+.main-header nav a {
+    color: var(--white);
+    font-weight: 700;
+    transition: color 0.3s;
+}
+
+.main-header nav a:hover {
+    color: #FFCDD2; /* Jasny róż po najechaniu */
+}
+
+/* --- 3. HERO (Sekcja powitalna) --- */
+.hero {
+    /* Tu później wstawimy zdjęcie tła */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1574484284002-952d92456975?q=80&w=1920&auto=format&fit=crop'); 
+    background-size: cover;
+    background-position: center;
+    height: 60vh; /* 60% wysokości ekranu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+}
+
+.hero h1 {
+    color: var(--white);
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Przycisk CTA (Call To Action) */
+.btn-primary {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 15px 30px;
+    border-radius: 50px; /* Zaokrąglone boki */
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: 2px solid var(--white);
+    transition: transform 0.2s, background 0.3s;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05); /* Lekkie powiększenie */
+    background-color: #b71c1c;
+}
+
+/* --- 4. MENU (Lista dań) --- */
+.menu-section {
+    padding: 60px 0;
+    background-color: var(--white); /* Białe tło dla czytelności */
+}
+
+.menu-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.menu-category {
+    margin-bottom: 40px;
+}
+
+.menu-category h3 {
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+.menu-list li {
+    display: flex;
+    justify-content: space-between; /* Rozrzuca nazwę i cenę na boki */
+    align-items: baseline;
+    margin-bottom: 15px;
+    border-bottom: 1px dotted #ccc; /* Kropkowana linia jak w karcie dań */
+    padding-bottom: 5px;
+}
+
+.dish-name {
+    font-weight: 700;
+}
+
+.dish-price {
+    font-weight: 700;
+    color: var(--primary-color);
+    white-space: nowrap; /* Cena nie złamie się do nowej linii */
+}
+
+/* --- 5. GALERIA (Siatka zdjęć) --- */
+.gallery-section {
+    padding: 60px 0;
+    background-color: #fff; /* Białe tło sekcji */
+}
+
+.gallery-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+}
+
+.gallery-grid {
+    display: grid;
+    /* To magiczna linijka: tworzy tyle kolumn ile się da, minimum 250px szerokości */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px; /* Odstępy między zdjęciami */
+}
+
+.gallery-item {
+    height: 300px; /* Ustalona wysokość kafelka */
+    border-radius: 15px; /* Zaokrąglone rogi */
+    overflow: hidden; /* Wszystko co wystaje poza zaokrąglenie jest ucinane */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Cień pod zdjęciem */
+    transition: transform 0.3s ease; /* Płynna animacja */
+}
+
+/* Efekt po najechaniu myszką */
+.gallery-item:hover {
+    transform: scale(1.03); /* Lekkie powiększenie */
+}
+
+/* Stylizowanie samego obrazka w środku */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* KLUCZOWE: zdjęcie wypełnia cały kafelek, nie jest rozciągnięte! */
+    display: block;
+}
+
+/* --- STOPKA I MAPA --- */
+
+footer {
+    background-color: #2c2c2c; /* Ciemne tło */
+    color: #cccccc;            /* Jasnoszary tekst */
+    padding: 50px 0 20px;      /* Dużo miejsca od góry, mniej od dołu */
+    text-align: center;        /* Wszystko wyśrodkowane */
+}
+
+/* Styl nagłówka "Znajdź nas" */
+.footer-title {
+    color: #ffffff;            /* Biały kolor */
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Styl linijek z adresem i telefonem */
+.footer-info {
+    font-size: 1.1rem;
+    margin-bottom: 10px;       /* Odstępy między liniami */
+}
+
+/* Linki w stopce (np. numer telefonu) */
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 1px dotted #ffffff; /* Delikatne podkreślenie */
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #D32F2F; /* Czerwony po najechaniu */
+    border-bottom-color: #D32F2F;
+}
+
+/* --- MAPA GOOGLE (Nowy kod) --- */
+.map-container {
+    width: 100%;       /* Szerokość na maxa (ograniczona przez container) */
+    height: 300px;     /* Stała wysokość */
+    margin: 30px 0;    /* Odstęp od tekstu i od stopki */
+    border-radius: 12px; /* Ładnie zaokrąglone rogi */
+    overflow: hidden;  /* Przycina mapę do zaokrągleń */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Cień pod mapą */
+    border: 2px solid #444; /* Ciemna ramka dla elegancji */
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+/* --- COPYRIGHT (Pasek na samym dole) --- */
+.copyright {
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #444; /* Cienka linia oddzielająca */
+}
+/* --- 7. RESPONSYWNOŚĆ (Dla telefonów) --- */
+@media (max-width: 768px) {
+    .main-header .container {
+        flex-direction: column; /* Układa logo nad menu */
+        gap: 10px;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem; /* Mniejszy tekst na telefonie */
+    }
+
+    .dish-name {
+        font-size: 0.95rem; /* Mniejszy tekst w menu */
+    }
+}
